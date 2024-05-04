@@ -1,0 +1,274 @@
+command /gm [<text>]:
+	
+	permission: KittyCore.gm
+	permission message: &cYou don't have permission!
+	trigger:
+		
+		if arg 1 is "0":
+			set the player's gamemode to survival
+			send "&cKittyCore &7>> &fChanged gamemode"
+		
+		if arg 1 is "1":
+			set the player's gamemode to creative
+			send "&cKittyCore &7>> &fChanged gamemode"
+			
+		if arg 1 is "2":
+			set the player's gamemode to adventure
+			send "&cKittyCore &7>> &fChanged gamemode"
+			
+		if arg 1 is "3":
+			set the player's gamemode to spectator
+			send "&cKittyCore &7>> &fChanged gamemode"
+			
+		
+command /help [<text>]:
+		
+	trigger:
+	
+		if arg 1 is not set:
+			send ""
+			send "&c[---HELP---]"
+			send ""
+			send "&f/shop &7&o - Opening shop"
+			send ""
+			send "&e&lPage: 1/2 &7&oUsage: /help [page]"
+			send "&c[---HELP---]"
+			send "&7&o This is simple help menu"
+		
+		if arg 1 is "1":
+			send ""
+			send "&c[---HELP---]"
+			send ""
+			send "&f/shop &7&o - Opening shop"
+			send ""
+			send "&e&lPage: 1/2 &7&oUsage: /help [page]"
+			send "&c[---HELP---]"
+			send "&7&o This is simple help menu"
+
+		if arg 1 is "2":
+			send ""
+			send "&c[---HELP---]"
+			send ""
+			send "&f/help &7&o - Opening help"
+			send ""
+			send "&e&lPage: 2/2 &7&oUsage: /help [page]"
+			send "&c[---HELP---]"
+			send "&7&o This is simple help menu"
+			
+command /kittycore [<text>]:
+
+	permission: KittyCore.admin.info
+	permission message: &cYou don't have permission!
+	trigger:
+	
+		if arg 1 is not set:
+			send ""
+			send "&c[-KittyCore-]"
+			send "&eAll commands:"
+			send "  &f/gm [gamemode]&7&o - Change your gamemode"
+			send "  &f/help [page]&7&o - Opening player help"
+			send "  &f/kittycore&7&o - Opening this &r&cKittyCore &7&oInfo"
+			send "  &f/shop &7&o - Opening shop"
+			send ""
+			send "&ePermissions:"
+			send "  &f KittyCore.gm &7&o - /gm command"
+			send "  &f KittyCore.admin.info &7&o - /kittycore"
+			send ""
+			send "&eInfo"
+			send "  &aVersion: 1.1.1"
+			
+command /kickbans [<text>] [<text>] [<text>] [<text>]:
+
+	trigger:
+	
+		if arg 1 is not set:
+			send ""
+			send "&c&l--KittyCore - KickBans--"
+			send "&6 Help"
+			send ""
+			send "&f&l kickbans ban [nick] [reason] &r&7- Ban player"
+			send "&f&l kickbans kick [nick] &r&7 - Kick player"
+			send "&f&l kickbans banip [nick] [reason] &7- Ban ip"
+			send ""
+		
+		
+		if arg 1 is "ban":
+			if arg 2 is set:
+				execute player command "ban %argument 2%"
+				if arg 3 is set:
+					execute player command "ban %argument 2% %argument 3%"
+					
+		if arg 1 is "kick":
+			if arg 2 is "all":
+				execute player command "kickall"
+			if arg 2 is set:
+				execute player command "kick %argument 2%"
+				
+		
+		if arg 1 is "banip":
+			if arg 2 is set:
+				execute player command "banip %argument 2%"
+				if arg 3 is set:
+					execute player command "ban-ip %argument 2% %argument 3%"
+
+# Shop section
+# To disable add "#" before every text
+command /shop [<text>]:
+	
+	permission: KittyCore.shop
+	permission message: &cYou don't have permission!
+	trigger:
+		
+		if arg 1 is not set:
+			open chest inventory with 3 rows named "&bShop" to player
+			set slot 0 of player's current inventory to yellow stained glass pane named " "
+			set slot 1 of player's current inventory to black stained glass pane named " "
+			set slot 2 of player's current inventory to black stained glass pane named " "
+			set slot 3 of player's current inventory to black stained glass pane named " "
+			set slot 4 of player's current inventory to black stained glass pane named " "
+			set slot 5 of player's current inventory to black stained glass pane named " "
+			set slot 6 of player's current inventory to black stained glass pane named " "
+			set slot 7 of player's current inventory to black stained glass pane named " "
+			set slot 8 of player's current inventory to yellow stained glass pane named " "
+			set slot 9 of player's current inventory to black stained glass pane named " "
+			set slot 17 of player's current inventory to black stained glass pane named " "
+			set slot 18 of player's current inventory to yellow stained glass pane named " "
+			set slot 19 of player's current inventory to black stained glass pane named " "
+			set slot 20 of player's current inventory to black stained glass pane named " "
+			set slot 21 of player's current inventory to black stained glass pane named " "
+			set slot 22 of player's current inventory to yellow stained glass pane named " "
+			set slot 23 of player's current inventory to black stained glass pane named " "
+			set slot 24 of player's current inventory to black stained glass pane named " "
+			set slot 25 of player's current inventory to black stained glass pane named " "
+			set slot 26 of player's current inventory to yellow stained glass pane named " "
+		
+			set slot 10 of player's current inventory to iron ore named "&f&lOres" 
+			
+on inventory click:
+	if name of player's current inventory contains "&bShop":
+		cancel event
+		if index of event-slot is 10:
+			wait 5 ticks
+			execute player command "shopores"
+			
+command /shopores [<text>]:
+	
+	trigger:
+
+		if arg 1 is not set:
+			open chest inventory with 3 rows named "&f&lOres" to player
+			set slot 0 of player's current inventory to yellow stained glass pane named " "
+			set slot 1 of player's current inventory to black stained glass pane named " "
+			set slot 2 of player's current inventory to black stained glass pane named " "
+			set slot 3 of player's current inventory to black stained glass pane named " "
+			set slot 4 of player's current inventory to player's skull named "&e Balance: &e&l%balance of player%"
+			set slot 5 of player's current inventory to black stained glass pane named " "
+			set slot 6 of player's current inventory to black stained glass pane named " "
+			set slot 7 of player's current inventory to black stained glass pane named " "
+			set slot 8 of player's current inventory to yellow stained glass pane named " "
+			set slot 9 of player's current inventory to black stained glass pane named " "
+			set slot 17 of player's current inventory to black stained glass pane named " "
+			set slot 18 of player's current inventory to yellow stained glass pane named " "
+			set slot 19 of player's current inventory to black stained glass pane named " "
+			set slot 20 of player's current inventory to black stained glass pane named " "
+			set slot 21 of player's current inventory to black stained glass pane named " "
+			set slot 22 of player's current inventory to yellow stained glass pane named " "
+			set slot 23 of player's current inventory to black stained glass pane named " "
+			set slot 24 of player's current inventory to black stained glass pane named " "
+			set slot 25 of player's current inventory to black stained glass pane named " "
+			set slot 26 of player's current inventory to yellow stained glass pane named " "
+		
+			set slot 10 of player's current inventory to coal named "&7Coal" with lore "&aBuy for 2$"
+			set slot 11 of player's current inventory to iron ingot named "&fIron" with lore "&aBuy for 5$"
+			set slot 12 of player's current inventory to gold ingot named "&6Gold" with lore "&aBuy for 7$"
+			set slot 13 of player's current inventory to copper ingot named "&cCopper" with lore "&aBuy for 3$"
+			set slot 14 of player's current inventory to emerald named "&aEmerald" with lore "&aBuy for 15$"
+			set slot 15 of player's current inventory to diamond named "&bDiamond" with lore "&aBuy for 25$"
+			set slot 16 of player's current inventory to lapis lazuli named "&1Lapis" with lore "&aBuy for 1$"
+		
+on inventory click:
+	if name of player's current inventory contains "&f&lOres":
+		cancel event
+		if index of event-slot is 10:
+			if player's balance is greater than or equal to 2:
+				remove 2 from player's balance
+				give 1 coal to player
+			else:
+				send "&cKittyCore &7>> &c&lYou don't have money to buy this!"
+				
+on inventory click:
+	if name of player's current inventory contains "&f&lOres":
+		cancel event
+		if index of event-slot is 11:
+			if player's balance is greater than or equal to 5:
+				remove 5 from player's balance
+				give 1 iron ingot to player
+			else:
+				send "&cKittyCore &7>> &c&lYou don't have money to buy this!"
+				
+on inventory click:
+	if name of player's current inventory contains "&f&lOres":
+		cancel event
+		if index of event-slot is 12:
+			if player's balance is greater than or equal to 7:
+				remove 7 from player's balance
+				give 1 gold ingot to player
+			else:
+				send "&cKittyCore &7>> &c&lYou don't have money to buy this!"
+				
+on inventory click:
+	if name of player's current inventory contains "&f&lOres":
+		cancel event
+		if index of event-slot is 13:
+			if player's balance is greater than or equal to 3:
+				remove 3 from player's balance
+				give 1 copper ingot to player
+			else:
+				send "&cKittyCore &7>> &c&lYou don't have money to buy this!"
+				
+on inventory click:
+	if name of player's current inventory contains "&f&lOres":
+		cancel event
+		if index of event-slot is 14:
+			if player's balance is greater than or equal to 15:
+				remove 1 from player's balance
+				give 1 emerald to player
+
+on inventory click:
+	if name of player's current inventory contains "&f&lOres":
+		cancel event
+		if index of event-slot is 15:
+			if player's balance is greater than or equal to 25:
+				remove 25 from player's balance
+				give 1 diamond to player
+			else:
+				send "&cKittyCore &7>> &c&lYou don't have money to buy this!"
+				
+on inventory click:
+	if name of player's current inventory contains "&f&lOres":
+		cancel event
+		if index of event-slot is 16:
+			if player's balance is greater than or equal to 1:
+				remove 1 from player's balance
+				give 1 lapis lazuli to player
+			else:
+				send "&cKittyCore &7>> &c&lYou don't have money to buy this!"
+				
+# It's end of shop section
+
+#Nightvision Command
+command /nv [<text>]:
+	
+	permission: KittyCore.nv
+	permission message: &cYou don't have permision!
+	trigger:
+	
+		if arg 1 is not set:
+			send "&cKittyCore &7>> Usage:&env on/off"
+			
+		if arg 1 is "on":
+			apply night vision 1 without any particles to the player for 999 days
+
+		if arg 1 is "off":
+			remove night vision from the player
+			
